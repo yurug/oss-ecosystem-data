@@ -40,8 +40,8 @@ let table_cardinal id =
 let import_csv id schema csv ks =
   fresh_table id schema;
   if table_cardinal id = 0 then (
-    command {| COPY $1 FROM $2 DELIMITER ',' CSV HEADER |} [id; csv];
-    List.iter (fun k -> command {| CREATE INDEX ON %1(%2); |} [id; k]) ks
+    command {| COPY $1 FROM $2 DELIMITER ',' CSV HEADER; |} [id; csv];
+    List.iter (fun k -> command {| CREATE INDEX ON $1($2); |} [id; k]) ks
   )
 
 let connect () =
