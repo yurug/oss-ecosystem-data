@@ -25,6 +25,7 @@ depends: [
   "odoc"                 {with-doc}
   "csv"
   "pgx"
+  "pgx_unix"
 ]
 
 build: ["dune" "build" "-p" name "-j" jobs]
