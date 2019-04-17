@@ -1,0 +1,11 @@
+(rule
+ (targets version.ml)
+ (action
+  (with-stdout-to version.ml
+   (echo "let current=\"%{version:ecoss}\"\n"))))
+
+(library
+ (name ecoss)
+ (public_name ecoss)
+ (modules X messages dataSets DB ecosystem package librariesIO ecoss)
+ (libraries unix str csv pgx pgx_unix))

@@ -1,0 +1,30 @@
+opam-version: "2.0"
+
+name: "ecoss"
+version: "0.1"
+
+synopsis: "Uniform interface to data related to Open Source Ecosystems"
+description: """
+This library retrieves data about OSS ecosystems from different sources and
+exposes it through a uniform library.
+"""
+
+maintainer: "Yann Régis-Gianas <yrg@irif.fr>"
+authors: [
+  "Yann Régis-Gianas <yrg@irif.fr>"
+]
+license: "MIT"
+
+homepage: "https://github.com/yurug/oss-ecosystem-data"
+bug-reports: "https://github.com/yurug/oss-ecosystem-data/issues"
+dev-repo: "git://github.com/yurug/oss-ecosystem-data.git"
+
+depends: [
+  "dune"                 {build & >= "1.4.0"}
+  "ocaml"
+  "odoc"                 {with-doc}
+  "csv"
+  "pgocaml"
+]
+
+build: ["dune" "build" "-p" name "-j" jobs]
