@@ -47,3 +47,6 @@ type dependency =
 
 let package_dependencies =
   Package.dependencies
+
+let dependency_source ecosystem =
+  Ecosystem.dependency_source ecosystem

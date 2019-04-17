@@ -1,5 +1,13 @@
 # Uniform access to data about OSS ecosystems
 
+## Installation
+
+### From the sources
+
+```
+opam install .
+```
+
 ## Setup
 
 We are using postgres to efficiently store data sets, so you need to setup

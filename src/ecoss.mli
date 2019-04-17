@@ -23,19 +23,35 @@ val initialize : unit -> unit
     been changed by external means. *)
 
 type ecosystem
+(** The data for a specific ecosystem. *)
 
 val ecosystems : unit -> ecosystem list
-
-val ecosystem : string -> ecosystem
-
-val ecosystem_names : unit -> string list
+(** The list of ecosystems of this data set. *)
 
 val ecosystem_name : ecosystem -> string
+(** Every ecosystem has a unique name. *)
+
+val ecosystem_names : unit -> string list
+(** The names of the ecosystems of this data set. *)
+
+val ecosystem : string -> ecosystem
+(** [ecosystem name] raises [Not_found] if [name] is not
+    in [ecosystem_names ()]. *)
 
 type package
+(** The data for a package. Each package belongs to an ecosystem. *)
 
 val ecosystem_packages : ecosystem -> package Seq.t
+(** [ecosystem_packages e] potentially large list of packages that
+    belongs to [e]. *)
 
 type dependency
+(** A package has zero, one or several dependencies. *)
 
 val package_dependencies : package -> dependency list
+(** [package_dependencies p]. *)
+
+val dependency_source : ecosystem -> dependency -> package
+(** For every [dependency] in [package_dependencies p],
+    [dependency_source ecosystem dependency] is a package that is
+    necessary for [p]. *)
