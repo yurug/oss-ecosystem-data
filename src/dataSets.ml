@@ -24,20 +24,16 @@ let check_data_sets_dir_existence () =
 let data_sets_path filename =
   Filename.concat (data_sets_dir ()) filename
 
-let check_data_set_freshness (prefix, filename) =
+let check_data_set_freshness (prefix, filename) = Unix.(
   let path = data_sets_path filename in
   let flags = if file_exists path then sprintf "-z \"%s\"" path else "" in
-  let curling =
-    sprintf "curl -o \"%s\" %s \"%s/%s\""
-      (data_sets_path filename) flags prefix filename
-  in
-  let get_mtime () =
-    if flags <> "" then Unix.((stat path).st_mtime) else 0.
-  in
+  let uri = prefix ^ "/" ^ filename in
+  let curling = sprintf "curl -o \"%s\" %s \"%s\"" path flags uri in
+  let get_mtime () = if file_exists path then ((stat path).st_mtime) else 0. in
   let date = get_mtime () in
-  if command curling <> 0 then
-    initialization_error (sprintf "Command `%s` failed." curling);
+  X.critical_command curling;
   get_mtime () <> date
+)
 
 let initializers =
   ref []
