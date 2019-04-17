@@ -10,6 +10,10 @@ opam install .
 
 ## Setup
 
+By default, the data sets are expecting to be loaded in `./data`. This
+can be changed by setting the environment variable `ECOSS_DATASETS` to
+another path.
+
 We are using postgres to efficiently store data sets, so you need to setup
 postgres properly. It will also consume several gigabytes on your hard drive.
 
