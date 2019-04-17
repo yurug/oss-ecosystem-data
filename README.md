@@ -10,7 +10,7 @@ opam install .
 
 ## Setup
 
-By default, the data sets are expecting to be loaded in `./data`. This
+By default, the data sets are expected to be loaded in `./data`. This
 can be changed by setting the environment variable `ECOSS_DATASETS` to
 another path.
 
