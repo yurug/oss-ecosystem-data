@@ -23,7 +23,9 @@ let command q params =
   query q params |> ignore
 
 let fresh_table id schema =
-  command {| CREATE TABLE IF NOT EXISTS $1 ($2); |} [id; schema]
+  command
+    (Printf.sprintf {| CREATE TABLE IF NOT EXISTS %s ($2); |} id)
+    [schema]
 
 let string =
   !! Pv.to_string
