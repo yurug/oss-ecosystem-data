@@ -38,6 +38,8 @@ PGHOST=localhost PGUSER=yann PGPORT=postgresql PGPASSWORD=postgres dune utop
 ```
 open Ecoss
 
+let length = List.fold_left (fun n _ -> succ n) 0
+
 let maven = ecosystem "Maven"
 
 let count, get = Ecoss__X.histogram ()
