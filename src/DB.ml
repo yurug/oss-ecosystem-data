@@ -1,3 +1,4 @@
+open Printf
 open X
 module Pg = Pgx_unix
 module Pv = Pgx_value
@@ -43,7 +44,9 @@ let import_csv id schema csv ks =
   fresh_table id schema;
   if table_cardinal id = 0 then (
     command {| COPY $1 FROM $2 DELIMITER ',' CSV HEADER; |} [id; csv];
-    List.iter (fun k -> command {| CREATE INDEX ON $1($2); |} [id; k]) ks
+    List.iter
+      (fun k -> command (sprintf {| CREATE INDEX ON %s(%s); |} id k) [])
+      ks
   )
 
 let connect () =
