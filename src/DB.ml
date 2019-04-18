@@ -36,7 +36,7 @@ let single_string = function
   | _ -> failwith "Not a single string"
 
 let table_cardinal id =
-  query {| SELECT COUNT(ID) FROM $1; |} [id] |> function
+  query (sprintf {| SELECT COUNT(ID) FROM %s; |} id) [] |> function
   | [ [ count ] ] -> X.unSome (Pv.to_int count)
   | _ -> assert false
 
