@@ -24,7 +24,7 @@ let command q params =
 
 let fresh_table id schema =
   command
-    (Printf.sprintf {| CREATE TABLE IF NOT EXISTS %s ($2); |} id)
+    (Printf.sprintf {| CREATE TABLE IF NOT EXISTS %s ($1); |} id)
     [schema]
 
 let string =
