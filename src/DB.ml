@@ -43,7 +43,7 @@ let table_cardinal id =
 let import_csv id schema csv ks =
   fresh_table id schema;
   if table_cardinal id = 0 then (
-    command {| COPY $1 FROM $2 DELIMITER ',' CSV HEADER; |} [id; csv];
+    command (sprintf {| COPY %s FROM %s DELIMITER ',' CSV HEADER; |} id csv) [];
     List.iter
       (fun k -> command (sprintf {| CREATE INDEX ON %s(%s); |} id k) [])
       ks
