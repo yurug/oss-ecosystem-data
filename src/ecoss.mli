@@ -55,3 +55,7 @@ val dependency_source : ecosystem -> dependency -> package
 (** For every [dependency] in [package_dependencies p],
     [dependency_source ecosystem dependency] is a package that is
     necessary for [p]. *)
+
+val transitive_dependencies : ecosystem -> package -> dependency list
+(** Compute all transitive dependencies of a given package assuming
+    there are no infinite descending chains. *)

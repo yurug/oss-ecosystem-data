@@ -50,3 +50,6 @@ let package_dependencies =
 
 let dependency_source ecosystem =
   Ecosystem.dependency_source ecosystem
+
+let transitive_dependencies ecosystem package =
+  Ecosystem.transitive_dependencies ecosystem package
