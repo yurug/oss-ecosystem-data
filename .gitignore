@@ -1,23 +1,9 @@
-*.annot
-*.cmo
-*.cma
-*.cmi
-*.a
-*.o
-*.cmx
-*.cmxs
-*.cmxa
-
-# ocamlbuild working directory
+# Dune hygienic build directory
 _build/
 
-# ocamlbuild targets
-*.byte
-*.native
-
-# oasis generated files
-setup.data
-setup.log
-
-# Merlin configuring file for Vim and Emacs
+# Dune auto-generated files
 .merlin
+*.install
+
+# Emacs auto-generated files
+*~
