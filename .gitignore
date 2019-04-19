@@ -7,3 +7,6 @@ _build/
 
 # Emacs auto-generated files
 *~
+
+# nix-build output
+result
