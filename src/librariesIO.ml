@@ -124,6 +124,7 @@ let package_of_ecosystem e p =
     [e; p]
  |> function [ package ] ->
               make_package e (DB.single_string package)
+           | [] -> raise (Ecosystem.Package_does_not_exist p)
            | _ -> assert false
 
 let platforms () =

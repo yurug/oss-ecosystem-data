@@ -51,7 +51,7 @@ type dependency
 val package_dependencies : package -> dependency list
 (** [package_dependencies p]. *)
 
-val dependency_source : ecosystem -> dependency -> package
+val dependency_source : ecosystem -> dependency -> package option
 (** For every [dependency] in [package_dependencies p],
     [dependency_source ecosystem dependency] is a package that is
     necessary for [p]. *)

@@ -12,8 +12,13 @@ let packages e = e.packages ()
 
 let package e = e.package
 
+exception Package_does_not_exist of string
+
 let dependency_source ecosystem dependency =
-  ecosystem.package dependency.Package.package
+  try
+    Some (ecosystem.package dependency.Package.package)
+  with
+    Package_does_not_exist _ -> None
 
 (* This will loop infinitely if there exist an infinite descending
    chain of dependencies. *)
@@ -23,7 +28,9 @@ let rec transitive_dependencies ecosystem package =
          dependency
          :: ( dependency
               |> dependency_source ecosystem
-              |> transitive_dependencies ecosystem ) )
+              |> function
+                | None -> []
+                | Some p -> transitive_dependencies ecosystem p ) )
   |> List.fold_left (fun l r ->
          l @ List.filter (fun x ->
                  List.for_all (fun y ->
