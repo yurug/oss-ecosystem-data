@@ -10,3 +10,6 @@ _build/
 
 # nix-build output
 result
+
+# data directory
+data/
